@@ -1,4 +1,4 @@
-package com.ada.dynamo;
+package com.ada.dynamo.controller;
 
 import com.ada.dynamo.model.Tarefa;
 import com.ada.dynamo.repository.TarefaRepository;
