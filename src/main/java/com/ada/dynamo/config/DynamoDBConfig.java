@@ -63,11 +63,9 @@ public class DynamoDBConfig {
         CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
         createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
 
-        if (amazonDynamoDB.listTables().getTableNames().contains(createTableRequest.getTableName())) {
-            amazonDynamoDB.deleteTable(createTableRequest.getTableName());
+        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequest.getTableName())) {
+            amazonDynamoDB.createTable(createTableRequest);
+            // amazonDynamoDB.deleteTable(createTableRequest.getTableName());
         }
-
-        amazonDynamoDB.createTable(createTableRequest);
-
     }
 }
