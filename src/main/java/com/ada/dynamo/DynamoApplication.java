@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DynamoApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(DynamoApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(DynamoApplication.class, args);
+    }
 }

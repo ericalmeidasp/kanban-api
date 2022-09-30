@@ -29,13 +29,7 @@ public class DynamoDBConfig {
     private String dynamoDBServiceEndPoint;
     @Value("${dynamodb.service.region:sa-east-1}")
     private String dynamoDBRegion;
-
-    // @Bean
-    // @Primary
-    //public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB) {
-    //    return new DynamoDBMapper(amazonDynamoDB);
-    //}
-
+    
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder
@@ -61,11 +55,10 @@ public class DynamoDBConfig {
         DynamoDBMapper dynamoDBMapper = event.getApplicationContext().getBean(DynamoDBMapper.class);
 
         CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
-        createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
 
         if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequest.getTableName())) {
+            createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
             amazonDynamoDB.createTable(createTableRequest);
-            // amazonDynamoDB.deleteTable(createTableRequest.getTableName());
         }
     }
 }

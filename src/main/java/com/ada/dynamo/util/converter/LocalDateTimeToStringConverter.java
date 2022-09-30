@@ -1,4 +1,4 @@
-package com.ada.dynamo.util.converters;
+package com.ada.dynamo.util.converter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 

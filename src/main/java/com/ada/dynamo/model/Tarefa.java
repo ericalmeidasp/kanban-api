@@ -2,12 +2,11 @@ package com.ada.dynamo.model;
 
 
 import com.ada.dynamo.util.autogenerate.LocalDateTimeAutoGenerate;
-import com.ada.dynamo.util.converters.LocalDateTimeToStringConverter;
+import com.ada.dynamo.util.converter.LocalDateTimeToStringConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @DynamoDBTable(tableName = "tarefas")
