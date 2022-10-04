@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
-public abstract class AbstractRepository<T, K, S> {
+public abstract class AbstractRepository<T, K> {
 
     private final DynamoDBMapper mapper;
 
