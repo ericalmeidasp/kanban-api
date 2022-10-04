@@ -17,17 +17,23 @@ public class TarefaController {
     private final TarefaRepository repository;
 
     @PostMapping
-    public ResponseEntity<Tarefa> addTarefa(@RequestBody Tarefa tarefa) {
+    public ResponseEntity<Tarefa> store(@RequestBody Tarefa tarefa) {
         return ResponseEntity.ok(repository.save(tarefa));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tarefa> show(@PathVariable UUID id) {
-        return ResponseEntity.ok(repository.findById(id));
+    public ResponseEntity<Tarefa> show(@PathVariable String id) {
+        return ResponseEntity.ok(repository.findById(id, "tarefa"));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> destroy(@PathVariable String id) {
+        repository.deleteById(id, "tarefa");
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<Tarefa>> index() {
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<Tarefa>> index() {
+        return ResponseEntity.ok(repository.findAll("tarefa"));
     }
 }
