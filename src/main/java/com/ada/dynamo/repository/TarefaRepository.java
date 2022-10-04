@@ -1,22 +1,18 @@
 package com.ada.dynamo.repository;
 
 import com.ada.dynamo.model.Tarefa;
-import org.socialsignin.spring.data.dynamodb.repository.DynamoDBCrudRepository;
-import org.socialsignin.spring.data.dynamodb.repository.DynamoDBPagingAndSortingRepository;
-import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
-import org.socialsignin.spring.data.dynamodb.repository.EnableScanCount;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.UUID;
 
 @Repository
-@EnableScan
-public interface TarefaRepository extends DynamoDBPagingAndSortingRepository<Tarefa, UUID> {
-    List<Tarefa> findAll();
+public class TarefaRepository extends AbstractRepository<Tarefa, String> {
+    public TarefaRepository(DynamoDBMapper mapper) {
+        super(mapper);
+    }
 
-    @EnableScanCount
-    List<Tarefa> findByTituloContains(String titulo, Pageable pageable);
+    @Override
+    protected Class<Tarefa> getClassType() {
+        return Tarefa.class;
+    }
 }
