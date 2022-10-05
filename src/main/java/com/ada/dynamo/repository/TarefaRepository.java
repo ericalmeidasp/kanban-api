@@ -1,22 +1,34 @@
 package com.ada.dynamo.repository;
 
 import com.ada.dynamo.model.Tarefa;
-import org.socialsignin.spring.data.dynamodb.repository.DynamoDBCrudRepository;
-import org.socialsignin.spring.data.dynamodb.repository.DynamoDBPagingAndSortingRepository;
-import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
-import org.socialsignin.spring.data.dynamodb.repository.EnableScanCount;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
-@EnableScan
-public interface TarefaRepository extends DynamoDBPagingAndSortingRepository<Tarefa, UUID> {
-    List<Tarefa> findAll();
+@RequiredArgsConstructor
+public class TarefaRepository {
 
-    @EnableScanCount
-    List<Tarefa> findByTituloContains(String titulo, Pageable pageable);
+    private final DynamoDBMapper mapper;
+
+    public Tarefa save(Tarefa tarefa) {
+        tarefa.setId(UUID.randomUUID());
+        mapper.save(tarefa);
+        return tarefa;
+    }
+
+    public Tarefa findById(UUID id) {
+        return mapper.load(Tarefa.class, id);
+    }
+
+    public Iterable<Tarefa> findAll() {
+        return mapper.scan(Tarefa.class, new DynamoDBScanExpression())
+                .stream()
+                .collect(Collectors.toList());
+    }
 }
