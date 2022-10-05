@@ -16,13 +16,11 @@ public class TarefaRepository {
 
     private final DynamoDBMapper mapper;
 
-
     public Tarefa save(Tarefa tarefa) {
         tarefa.setId(UUID.randomUUID());
         mapper.save(tarefa);
         return tarefa;
     }
-
 
     public Tarefa findById(UUID id) {
         return mapper.load(Tarefa.class, id);
@@ -33,6 +31,4 @@ public class TarefaRepository {
                 .stream()
                 .collect(Collectors.toList());
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.ada.dynamo.config;
 
+import com.ada.dynamo.model.Quadro;
 import com.ada.dynamo.model.Tarefa;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -56,11 +57,18 @@ public class DynamoDBConfig {
         AmazonDynamoDB amazonDynamoDB = event.getApplicationContext().getBean(AmazonDynamoDB.class);
         DynamoDBMapper dynamoDBMapper = event.getApplicationContext().getBean(DynamoDBMapper.class);
 
-        CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
+        CreateTableRequest createTableTarefaRequest = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
 
-        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequest.getTableName())) {
-            createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-            amazonDynamoDB.createTable(createTableRequest);
+        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableTarefaRequest.getTableName())) {
+            createTableTarefaRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+            amazonDynamoDB.createTable(createTableTarefaRequest);
+        }
+
+        CreateTableRequest createTableQuadroRequest = dynamoDBMapper.generateCreateTableRequest(Quadro.class);
+
+        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableQuadroRequest.getTableName())) {
+            createTableQuadroRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+            amazonDynamoDB.createTable(createTableQuadroRequest);
         }
     }
 }
