@@ -1,4 +1,8 @@
 package com.ada.dynamo.dto.request;
 
-public class QuadroDTORequest {
+import lombok.Data;
+
+@Data
+public class QuadroRequest {
+    private String name;
 }

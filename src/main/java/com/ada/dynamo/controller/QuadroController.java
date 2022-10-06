@@ -1,10 +1,13 @@
 package com.ada.dynamo.controller;
 
+import com.ada.dynamo.dto.request.QuadroRequest;
+import com.ada.dynamo.dto.response.QuadroResponse;
 import com.ada.dynamo.model.Quadro;
 import com.ada.dynamo.model.Tarefa;
 import com.ada.dynamo.repository.AbstractRepository;
 import com.ada.dynamo.repository.QuadroRepository;
 import com.ada.dynamo.repository.TarefaRepository;
+import com.ada.dynamo.service.QuadroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +19,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuadroController {
 
-    private final QuadroRepository repository;
+    private final QuadroService service;
 
     @PostMapping
-    public ResponseEntity<Quadro> store(@RequestBody Quadro quadro) {
-        return ResponseEntity.ok(repository.save(quadro));
+    public ResponseEntity<QuadroResponse> store(@RequestBody QuadroRequest quadroRequest) {
+        return ResponseEntity.ok(service.adicionar(quadroRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Quadro> show(@PathVariable String id) {
-        return ResponseEntity.ok(repository.findById(id, "quadro"));
+    public ResponseEntity<QuadroResponse> show(@PathVariable String id) {
+        return ResponseEntity.ok(service.exibir(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> destroy(@PathVariable String id) {
-        repository.deleteById(id,"quadro");
-        return ResponseEntity.ok().build();
+        service.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Quadro>> index() {
-        return ResponseEntity.ok(repository.findAll("quadro"));
+    public ResponseEntity<List<QuadroResponse>> index() {
+        return ResponseEntity.ok(service.listar());
     }
 }

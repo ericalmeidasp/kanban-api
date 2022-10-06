@@ -1,4 +1,4 @@
-package com.ada.dynamo.mapper;
+package com.ada.dynamo.util.mapper;
 
 import com.ada.dynamo.dto.request.ColunaRequest;
 import com.ada.dynamo.dto.request.TarefaRequest;

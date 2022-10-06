@@ -1,9 +1,10 @@
-package com.ada.dynamo.dto.request;
+package com.ada.dynamo.dto.response;
 
 import lombok.Data;
 
 @Data
-public class ColunaRequest {
+public class ColunaResponse {
+    private String id;
     private String name;
     private String cor;
     private Integer ordem;

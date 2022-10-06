@@ -9,9 +9,9 @@ import lombok.Data;
 @DynamoDBTable(tableName = "quadros")
 @Data
 public class Coluna {
-    @DynamoDBHashKey
-    private String id;
     @DynamoDBRangeKey
+    private String id;
+    @DynamoDBHashKey
     private String tipo;
     private String name;
     private String cor;

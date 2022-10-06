@@ -19,13 +19,13 @@ import org.springframework.context.event.EventListener;
 
 @Configuration
 public class DynamoDBConfig {
-    @Value("${aws.access.key.id:fakeid}")
+    @Value("${aws.access.key.id}")
     private String awsAccessKeyId;
-    @Value("${aws.access.key.secret:fakeSecret}")
+    @Value("${aws.access.key.secret}")
     private String awsAcessKeySecret;
-    @Value("${dynamodb.service.endpoint:http://localhost:8000/}")
+    @Value("${dynamodb.service.endpoint}")
     private String dynamoDBServiceEndPoint;
-    @Value("${dynamodb.service.region:sa-east-1}")
+    @Value("${dynamodb.service.region")
     private String dynamoDBRegion;
 
     @Bean
@@ -59,6 +59,7 @@ public class DynamoDBConfig {
 
         CreateTableRequest createTableRequestTarefas = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
         CreateTableRequest createTableRequestQuadros = dynamoDBMapper.generateCreateTableRequest(Quadro.class);
+
 
         if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequestTarefas.getTableName())) {
             createTableRequestTarefas.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
