@@ -2,20 +2,37 @@ package com.ada.dynamo.repository;
 
 import com.ada.dynamo.model.Coluna;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import lombok.RequiredArgsConstructor;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 @Repository
-@RequiredArgsConstructor
-public class ColunaRepository {
+public class ColunaRepository extends AbstractRepository<Coluna, String> {
+    public ColunaRepository(DynamoDBMapper mapper) {
+        super(mapper);
+    }
 
-    private final DynamoDBMapper mapper;
+    @Override
+    protected Class<Coluna> getClassType() {
+        return Coluna.class;
+    }
 
-    public Coluna save(String quadroId, Coluna coluna) {
-        coluna.setId(quadroId+"#"+ UUID.randomUUID().toString());
-        mapper.save(coluna);
-        return coluna;
+    public PaginatedQueryList<Coluna> listByQuadro(String quadroId) {
+        Map<String, AttributeValue> eav = new HashMap<>();
+
+        eav.put(":val1", new AttributeValue().withS(getEntityName()));
+        eav.put(":val2", new AttributeValue().withS(quadroId));
+
+        DynamoDBQueryExpression<Coluna> queryExpression = new DynamoDBQueryExpression<Coluna>()
+                .withKeyConditionExpression("tipo = :val1 and begins_with (id, :val2)")
+                .withExpressionAttributeValues(eav);
+
+        return mapper.query(getClassType(), queryExpression);
     }
 }

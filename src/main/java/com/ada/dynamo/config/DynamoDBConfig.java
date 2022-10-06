@@ -19,13 +19,13 @@ import org.springframework.context.event.EventListener;
 
 @Configuration
 public class DynamoDBConfig {
-    @Value("${aws.access.key.id:fakeid}")
+    @Value("${aws.access.key.id}")
     private String awsAccessKeyId;
-    @Value("${aws.access.key.secret:fakeSecret}")
+    @Value("${aws.access.key.secret}")
     private String awsAcessKeySecret;
-    @Value("${dynamodb.service.endpoint:http://localhost:8000/}")
+    @Value("${dynamodb.service.endpoint}")
     private String dynamoDBServiceEndPoint;
-    @Value("${dynamodb.service.region:sa-east-1}")
+    @Value("${dynamodb.service.region")
     private String dynamoDBRegion;
 
     @Bean
@@ -57,18 +57,18 @@ public class DynamoDBConfig {
         AmazonDynamoDB amazonDynamoDB = event.getApplicationContext().getBean(AmazonDynamoDB.class);
         DynamoDBMapper dynamoDBMapper = event.getApplicationContext().getBean(DynamoDBMapper.class);
 
-        CreateTableRequest createTableTarefaRequest = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
+        CreateTableRequest createTableRequestTarefas = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
+        CreateTableRequest createTableRequestQuadros = dynamoDBMapper.generateCreateTableRequest(Quadro.class);
 
-        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableTarefaRequest.getTableName())) {
-            createTableTarefaRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-            amazonDynamoDB.createTable(createTableTarefaRequest);
+
+        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequestTarefas.getTableName())) {
+            createTableRequestTarefas.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+            amazonDynamoDB.createTable(createTableRequestTarefas);
         }
 
-        CreateTableRequest createTableQuadroRequest = dynamoDBMapper.generateCreateTableRequest(Quadro.class);
-
-        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableQuadroRequest.getTableName())) {
-            createTableQuadroRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-            amazonDynamoDB.createTable(createTableQuadroRequest);
+        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequestQuadros.getTableName())) {
+            createTableRequestQuadros.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+            amazonDynamoDB.createTable(createTableRequestQuadros);
         }
     }
 }
