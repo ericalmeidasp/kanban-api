@@ -16,6 +16,7 @@ public class Tarefa {
     @DynamoDBHashKey
     private String tipo;
     private String titulo;
+    @DynamoDBIndexRangeKey(localSecondaryIndexName = "CriacaoIndex")
     private String descricao;
     @DynamoDBTypeConvertedEnum
     private Prioridade prioridade;

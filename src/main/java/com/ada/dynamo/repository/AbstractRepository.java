@@ -1,5 +1,6 @@
 package com.ada.dynamo.repository;
 
+import com.ada.dynamo.exception.ItemNaoEncontradoException;
 import com.ada.dynamo.model.Tarefa;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public abstract class AbstractRepository<T, K> {
@@ -25,17 +27,16 @@ public abstract class AbstractRepository<T, K> {
         mapper.delete(findById(id));
     }
 
-
     public T findById(K id) {
-        return mapper.load(getClassType(), getEntityName(), id);
+        return Optional.ofNullable(mapper.load(getClassType(), getEntityName(), id))
+                .orElseThrow(ItemNaoEncontradoException::new);
     }
 
     public List<T> findAll() {
 
         Map<String, AttributeValue> eav = new HashMap<>();
 
-        eav.put(":val1", new AttributeValue()
-                .withS(getEntityName()));
+        eav.put(":val1", new AttributeValue().withS(getEntityName()));
 
         DynamoDBQueryExpression<T> queryExpression = new DynamoDBQueryExpression<T>()
                 .withKeyConditionExpression("tipo = :val1")
