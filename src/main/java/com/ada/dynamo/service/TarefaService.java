@@ -64,7 +64,7 @@ public class TarefaService {
     public TarefaResponse alterarColunaTarefa(AlterarColunaTarefaRequest request, String id) {
         Tarefa tarefa = repository.findById(id);
         String idColunaAnterior = verificarColunaERetornaId(request.getFromColunaId());
-        String idColunaNova = verificarColunaERetornaId(request.getFromColunaId());
+        String idColunaNova = verificarColunaERetornaId(request.getToColunaId());
         String novoId = tarefa.getId().replace(idColunaAnterior, idColunaNova);
 
         tarefa.setId(novoId);
