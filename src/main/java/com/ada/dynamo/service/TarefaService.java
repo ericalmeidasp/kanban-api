@@ -4,6 +4,7 @@ import com.ada.dynamo.dto.request.AlterarColunaTarefaRequest;
 import com.ada.dynamo.dto.request.TarefaRequest;
 import com.ada.dynamo.dto.response.ColunaResponse;
 import com.ada.dynamo.dto.response.TarefaResponse;
+import com.ada.dynamo.repository.ColunaRepository;
 import com.ada.dynamo.util.mapper.TarefaMapper;
 import com.ada.dynamo.model.Tarefa;
 import com.ada.dynamo.repository.TarefaRepository;
@@ -20,10 +21,13 @@ public class TarefaService {
     private final TarefaMapper mapper;
     private final TarefaRepository repository;
 
+    private final ColunaService colunaService;
+
     public TarefaResponse adicionar(TarefaRequest tarefaRequest) {
         Tarefa tarefa = mapper.requestToModel(tarefaRequest);
         tarefa.setTipo(repository.getEntityName());
-        tarefa.setId(String.format("%s#%s", tarefaRequest.getColunaId(), UUID.randomUUID()));
+        var idColunaExistente = verificarColunaERetornaId(tarefaRequest.getColunaId());
+        tarefa.setId(String.format("%s#%s", idColunaExistente, UUID.randomUUID()));
 
         return mapper.modelToResponse(repository.save(tarefa));
     }
@@ -59,12 +63,14 @@ public class TarefaService {
 
     public TarefaResponse alterarColunaTarefa(AlterarColunaTarefaRequest request, String id) {
         Tarefa tarefa = repository.findById(id);
-        String novoId = tarefa.getId().replace(request.getFromColunaId(), request.getToColunaId());
+        String idColunaAnterior = verificarColunaERetornaId(request.getFromColunaId());
+        String idColunaNova = verificarColunaERetornaId(request.getToColunaId());
+        String novoId = tarefa.getId().replace(idColunaAnterior, idColunaNova);
 
         tarefa.setId(novoId);
 
-        repository.deleteById(id);
         repository.save(tarefa);
+        repository.deleteById(id);
 
         return mapper.modelToResponse(tarefa);
     }
@@ -77,5 +83,8 @@ public class TarefaService {
         return mapper.modelToResponse(tarefa);
     }
 
+    private String verificarColunaERetornaId(String id) {
+        return colunaService.exibir(id).getId();
+    }
 
 }

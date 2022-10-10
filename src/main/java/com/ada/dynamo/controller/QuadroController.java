@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class QuadroController {
     private final QuadroService service;
 
     @PostMapping
-    public ResponseEntity<QuadroResponse> store(@RequestBody QuadroRequest quadroRequest) {
+    public ResponseEntity<QuadroResponse> store(@RequestBody @Valid QuadroRequest quadroRequest) {
         return ResponseEntity.ok(service.adicionar(quadroRequest));
     }
 

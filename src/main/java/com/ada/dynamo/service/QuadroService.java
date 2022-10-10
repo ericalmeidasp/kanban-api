@@ -35,4 +35,8 @@ public class QuadroService {
     public List<QuadroResponse> listar() {
         return mapper.modelListToResponseList(repository.findAll());
     }
+
+    public String verificarQuadroERetornaId(String id) {
+        return repository.findById(id).getId();
+    }
 }
