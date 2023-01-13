@@ -24,7 +24,8 @@ public class QuadroController {
 
     @PostMapping
     public ResponseEntity<QuadroResponse> store(@RequestBody @Valid QuadroRequest quadroRequest) {
-        return ResponseEntity.ok(service.adicionar(quadroRequest));
+        QuadroResponse response = service.adicionar(quadroRequest);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
@@ -39,7 +40,7 @@ public class QuadroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QuadroResponse>> index() {
+    public ResponseEntity<List<QuadroResponse>> index() {     
         return ResponseEntity.ok(service.listar());
     }
 }
