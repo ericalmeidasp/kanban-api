@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo/quadro")
 @RequiredArgsConstructor
+@CrossOrigin
 public class QuadroController {
 
     private final QuadroService service;

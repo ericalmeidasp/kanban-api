@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo/coluna")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ColunaController {
 
     private final ColunaService service;

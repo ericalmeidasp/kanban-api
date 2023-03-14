@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo/tarefa")
 @RequiredArgsConstructor
+@CrossOrigin
 public class TarefaController {
 
     private final TarefaService service;
