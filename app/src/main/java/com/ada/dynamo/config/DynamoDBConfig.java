@@ -21,13 +21,13 @@ import java.util.List;
 
 @Configuration
 public class DynamoDBConfig {
-    @Value("${aws.access.key.id}")
+    @Value("${aws.access.keyId}")
     private String awsAccessKeyId;
-    @Value("${aws.access.key.secret}")
+    @Value("${aws.access.secret}")
     private String awsAcessKeySecret;
-    @Value("${dynamodb.service.endpoint}")
+    @Value("${aws.dynamo.endpoint}")
     private String dynamoDBServiceEndPoint;
-    @Value("${dynamodb.service.region")
+    @Value("${aws.dynamo.region}")
     private String dynamoDBRegion;
 
     @Bean
@@ -59,14 +59,7 @@ public class DynamoDBConfig {
         AmazonDynamoDB amazonDynamoDB = event.getApplicationContext().getBean(AmazonDynamoDB.class);
         DynamoDBMapper dynamoDBMapper = event.getApplicationContext().getBean(DynamoDBMapper.class);
 
-        CreateTableRequest createTableRequestTarefas = dynamoDBMapper.generateCreateTableRequest(Tarefa.class);
         CreateTableRequest createTableRequestQuadros = dynamoDBMapper.generateCreateTableRequest(Quadro.class);
-
-
-        if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequestTarefas.getTableName())) {
-            createTableRequestTarefas.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-            amazonDynamoDB.createTable(createTableRequestTarefas);
-        }
 
         if (!amazonDynamoDB.listTables().getTableNames().contains(createTableRequestQuadros.getTableName())) {
             createTableRequestQuadros.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
