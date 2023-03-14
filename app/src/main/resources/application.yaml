@@ -4,4 +4,4 @@ aws:
     secret: ${AWS_SECRET:fakeSecret}
   dynamo:
     region: ${AWS_DYNAMO_REGION:sa-east-1}
-    endpoint: ${AWS_DYNAMO_ENDPOINT:dynamodb.sa-east-1.amazonaws.com}
+    endpoint: ${AWS_DYNAMO_ENDPOINT:localhost:8000}
