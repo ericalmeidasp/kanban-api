@@ -1,0 +1,548 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "kanban-api",
+    "description": "app de quadro kanban",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://kanban-api-prod.up.railway.app"
+    }
+  ],
+  "paths": {
+    "/api/todo/coluna": {
+      "get": {
+        "summary": "GET api/todo/coluna",
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "POST api/todo/coluna",
+        "operationId": "store",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColunaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/coluna/quadro/{quadroId}": {
+      "get": {
+        "summary": "GET api/todo/coluna/quadro/{quadroId}",
+        "operationId": "indexQuadro",
+        "parameters": [
+          {
+            "name": "quadroId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/coluna/{id}": {
+      "get": {
+        "summary": "GET api/todo/coluna/{id}",
+        "operationId": "show",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE api/todo/coluna/{id}",
+        "operationId": "destroy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/tarefa": {
+      "get": {
+        "summary": "GET api/todo/tarefa",
+        "operationId": "get/api/todo/tarefa",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "POST api/todo/tarefa",
+        "operationId": "post/api/todo/tarefa",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TarefaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/tarefa/coluna/{colunaId}": {
+      "get": {
+        "summary": "GET api/todo/tarefa/coluna/{colunaId}",
+        "operationId": "indexColuna",
+        "parameters": [
+          {
+            "name": "colunaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/tarefa/{id}": {
+      "get": {
+        "summary": "GET api/todo/tarefa/{id}",
+        "operationId": "get/api/todo/tarefa/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "PUT api/todo/tarefa/{id}",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TarefaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "PATCH api/todo/tarefa/{id}",
+        "operationId": "updateTarefaColuna",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlterarColunaTarefaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE api/todo/tarefa/{id}",
+        "operationId": "delete/api/todo/tarefa/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/tarefa/{id}/concluir": {
+      "patch": {
+        "summary": "PATCH api/todo/tarefa/{id}/concluir",
+        "operationId": "concluirTarefa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/quadro": {
+      "get": {
+        "summary": "GET api/todo/quadro",
+        "operationId": "get/api/todo/quadro",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "POST api/todo/quadro",
+        "operationId": "post/api/todo/quadro",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuadroRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/todo/quadro/{id}": {
+      "get": {
+        "summary": "GET api/todo/quadro/{id}",
+        "operationId": "get/api/todo/quadro/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE api/todo/quadro/{id}",
+        "operationId": "delete/api/todo/quadro/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HttpHeaders": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseEntity": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "$ref": "#/components/schemas/HttpHeaders"
+          }
+        }
+      },
+      "ColunaRequest": {
+        "type": "object",
+        "properties": {
+          "quadroId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cor": {
+            "type": "string"
+          },
+          "ordem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "limite": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "TarefaRequest": {
+        "type": "object",
+        "properties": {
+          "colunaId": {
+            "type": "string"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "prioridade": {
+            "type": "string",
+            "enum": [
+              "ALTA",
+              "MEDIA",
+              "BAIXA"
+            ]
+          },
+          "previsao": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AlterarColunaTarefaRequest": {
+        "type": "object",
+        "properties": {
+          "fromColunaId": {
+            "type": "string"
+          },
+          "toColunaId": {
+            "type": "string"
+          }
+        }
+      },
+      "QuadroRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
