@@ -3,7 +3,6 @@ package com.ada.dynamo.controller;
 import com.ada.dynamo.dto.request.ColunaRequest;
 import com.ada.dynamo.dto.response.ColunaResponse;
 import com.ada.dynamo.service.ColunaService;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

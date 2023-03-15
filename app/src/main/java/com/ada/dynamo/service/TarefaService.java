@@ -20,15 +20,13 @@ import java.util.UUID;
 public class TarefaService {
     private final TarefaMapper mapper;
     private final TarefaRepository repository;
-
     private final ColunaService colunaService;
 
     public TarefaResponse adicionar(TarefaRequest tarefaRequest) {
         Tarefa tarefa = mapper.requestToModel(tarefaRequest);
         tarefa.setTipo(repository.getEntityName());
-        var idColunaExistente = verificarColunaERetornaId(tarefaRequest.getColunaId());
+        String idColunaExistente = verificarColunaERetornaId(tarefaRequest.getColunaId());
         tarefa.setId(String.format("%s#%s", idColunaExistente, UUID.randomUUID()));
-
         return mapper.modelToResponse(repository.save(tarefa));
     }
 
@@ -50,14 +48,11 @@ public class TarefaService {
 
     public TarefaResponse alterarTarefa(TarefaRequest tarefaRequest, String id) {
         Tarefa tarefa = repository.findById(id);
-
         tarefa.setTitulo(tarefaRequest.getTitulo());
         tarefa.setDescricao(tarefaRequest.getDescricao());
         tarefa.setPrioridade(tarefaRequest.getPrioridade());
         tarefa.setPrevisao(tarefaRequest.getPrevisao());
-
         repository.save(tarefa);
-
         return mapper.modelToResponse(tarefa);
     }
 
@@ -66,12 +61,9 @@ public class TarefaService {
         String idColunaAnterior = verificarColunaERetornaId(request.getFromColunaId());
         String idColunaNova = verificarColunaERetornaId(request.getToColunaId());
         String novoId = tarefa.getId().replace(idColunaAnterior, idColunaNova);
-
         tarefa.setId(novoId);
-
         repository.save(tarefa);
         repository.deleteById(id);
-
         return mapper.modelToResponse(tarefa);
     }
 
@@ -79,7 +71,6 @@ public class TarefaService {
         Tarefa tarefa = repository.findById(id);
         tarefa.setConclusao(LocalDateTime.now());
         repository.save(tarefa);
-
         return mapper.modelToResponse(tarefa);
     }
 

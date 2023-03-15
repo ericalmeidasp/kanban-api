@@ -1,7 +1,6 @@
 package com.ada.dynamo.config;
 
 import com.ada.dynamo.model.Quadro;
-import com.ada.dynamo.model.Tarefa;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -15,9 +14,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class DynamoDBConfig {

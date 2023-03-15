@@ -2,11 +2,6 @@ package com.ada.dynamo.controller;
 
 import com.ada.dynamo.dto.request.QuadroRequest;
 import com.ada.dynamo.dto.response.QuadroResponse;
-import com.ada.dynamo.model.Quadro;
-import com.ada.dynamo.model.Tarefa;
-import com.ada.dynamo.repository.AbstractRepository;
-import com.ada.dynamo.repository.QuadroRepository;
-import com.ada.dynamo.repository.TarefaRepository;
 import com.ada.dynamo.service.QuadroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

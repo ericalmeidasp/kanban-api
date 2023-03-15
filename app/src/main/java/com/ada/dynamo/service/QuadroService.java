@@ -18,9 +18,7 @@ public class QuadroService {
 
     public QuadroResponse adicionar(QuadroRequest quadroRequest) {
         Quadro quadro = mapper.requestToModel(quadroRequest);
-
         quadro.setTipo(repository.getEntityName());
-
         return mapper.modelToResponse(repository.save(quadro));
     }
 

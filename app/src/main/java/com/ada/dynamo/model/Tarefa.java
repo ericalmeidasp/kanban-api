@@ -1,6 +1,5 @@
 package com.ada.dynamo.model;
 
-
 import com.ada.dynamo.util.autogenerate.LocalDateTimeAutoGenerate;
 import com.ada.dynamo.util.converter.LocalDateTimeToStringConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
