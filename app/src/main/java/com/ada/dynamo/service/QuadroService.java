@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public class QuadroService {
 
     public QuadroResponse adicionar(QuadroRequest quadroRequest) {
         Quadro quadro = mapper.requestToModel(quadroRequest);
+        quadro.setId(UUID.randomUUID().toString());
         quadro.setTipo(repository.getEntityName());
         return mapper.modelToResponse(repository.save(quadro));
     }

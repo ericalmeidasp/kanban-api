@@ -1,10 +1,8 @@
 package com.ada.dynamo.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 @Data
 public class ColunaRequest {
     @NotBlank

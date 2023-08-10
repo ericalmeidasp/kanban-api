@@ -1,11 +1,10 @@
 package com.ada.dynamo.dto.request;
 
 import com.ada.dynamo.model.Prioridade;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,6 +18,5 @@ public class TarefaRequest {
     @NotNull
     private Prioridade prioridade;
     @NotNull
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime previsao;
 }

@@ -1,19 +1,43 @@
 package com.ada.dynamo.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import lombok.Data;
+import lombok.Setter;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
-@DynamoDBTable(tableName = "quadros")
-@Data
+@DynamoDbBean
+@Setter
 public class Coluna {
-    @DynamoDBRangeKey
     private String id;
-    @DynamoDBHashKey
     private String tipo;
     private String name;
     private String cor;
     private Integer ordem;
     private Integer limite;
+
+    @DynamoDbSortKey
+    public String getId() {
+        return id;
+    }
+
+    @DynamoDbPartitionKey
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public Integer getOrdem() {
+        return ordem;
+    }
+
+    public Integer getLimite() {
+        return limite;
+    }
 }

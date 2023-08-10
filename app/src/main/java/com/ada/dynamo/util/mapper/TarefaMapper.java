@@ -1,21 +1,22 @@
 package com.ada.dynamo.util.mapper;
 
-import com.ada.dynamo.dto.request.ColunaRequest;
-import com.ada.dynamo.dto.request.TarefaRequest;
-import com.ada.dynamo.dto.response.ColunaResponse;
 import com.ada.dynamo.dto.response.TarefaResponse;
-import com.ada.dynamo.model.Coluna;
 import com.ada.dynamo.model.Tarefa;
-import org.mapstruct.Mapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+@Component
+public class TarefaMapper extends TodoMapper<TarefaResponse,Tarefa> {
+    public TarefaMapper(ObjectMapper objectMapper) {
+        super(objectMapper);
+    }
 
-@Mapper(componentModel = "spring")
-public interface TarefaMapper {
-
-    Tarefa requestToModel(TarefaRequest tarefaRequest);
-
-    TarefaResponse modelToResponse(Tarefa tarefa);
-
-    List<TarefaResponse> modelListToResponseList(List<Tarefa> tarefaList);
+    @Override
+    Class<Tarefa> getModelClass() {
+        return Tarefa.class;
+    }
+    @Override
+    Class<TarefaResponse> getResponseClass() {
+        return TarefaResponse.class;
+    }
 }

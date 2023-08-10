@@ -39,7 +39,7 @@ public class ColunaService {
     }
 
     public List<ColunaResponse> listarPorQuadro(String quadroId) {
-        return mapper.modelListToResponseList(repository.listByQuadro(quadroId));
+        return mapper.modelListToResponseList(repository.listByAnterior(quadroId));
     }
 
     private String verificarQuadroERetornaId(String id) {

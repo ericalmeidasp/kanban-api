@@ -1,17 +1,30 @@
 package com.ada.dynamo.util.converter;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
+import software.amazon.awssdk.enhanced.dynamodb.AttributeConverter;
+import software.amazon.awssdk.enhanced.dynamodb.AttributeValueType;
+import software.amazon.awssdk.enhanced.dynamodb.EnhancedType;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 import java.time.LocalDateTime;
 
-public class LocalDateTimeToStringConverter implements DynamoDBTypeConverter<String, LocalDateTime> {
+public class LocalDateTimeToStringConverter implements AttributeConverter<LocalDateTime> {
     @Override
-    public String convert(LocalDateTime localDateTime) {
-        return localDateTime.toString();
+    public AttributeValue transformFrom(LocalDateTime localDateTime) {
+        return AttributeValue.fromS(localDateTime.toString());
     }
 
     @Override
-    public LocalDateTime unconvert(String s) {
-        return LocalDateTime.parse(s);
+    public LocalDateTime transformTo(AttributeValue attributeValue) {
+        return LocalDateTime.parse(attributeValue.s());
+    }
+
+    @Override
+    public EnhancedType<LocalDateTime> type() {
+        return EnhancedType.of(LocalDateTime.class);
+    }
+
+    @Override
+    public AttributeValueType attributeValueType() {
+        return AttributeValueType.S;
     }
 }
