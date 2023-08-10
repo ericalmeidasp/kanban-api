@@ -3,11 +3,11 @@ package com.ada.dynamo.controller;
 import com.ada.dynamo.dto.request.QuadroRequest;
 import com.ada.dynamo.dto.response.QuadroResponse;
 import com.ada.dynamo.service.QuadroService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -36,7 +36,7 @@ public class QuadroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QuadroResponse>> index() {     
+    public ResponseEntity<List<QuadroResponse>> index() {
         return ResponseEntity.ok(service.listar());
     }
 }

@@ -27,6 +27,7 @@ public class TarefaService {
         tarefa.setTipo(repository.getEntityName());
         String idColunaExistente = verificarColunaERetornaId(tarefaRequest.getColunaId());
         tarefa.setId(String.format("%s#%s", idColunaExistente, UUID.randomUUID()));
+        tarefa.setCriacao(LocalDateTime.now());
         return mapper.modelToResponse(repository.save(tarefa));
     }
 
@@ -43,7 +44,7 @@ public class TarefaService {
     }
 
     public List<TarefaResponse> listarPorColuna(String colunaId) {
-        return mapper.modelListToResponseList(repository.listByColuna(colunaId));
+        return mapper.modelListToResponseList(repository.listByAnterior(colunaId));
     }
 
     public TarefaResponse alterarTarefa(TarefaRequest tarefaRequest, String id) {

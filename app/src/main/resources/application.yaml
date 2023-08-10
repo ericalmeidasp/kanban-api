@@ -1,8 +1,7 @@
 aws:
+  region: ${AWS_REGION:sa-east-1}
   access:
     keyId: ${AWS_KEY_ID:fakeid}
     secret: ${AWS_SECRET:fakeSecret}
   dynamo:
-    region: ${AWS_DYNAMO_REGION:sa-east-1}
     endpoint: ${AWS_DYNAMO_ENDPOINT:localhost:8000}
-    

@@ -1,18 +1,22 @@
 package com.ada.dynamo.util.mapper;
 
-import com.ada.dynamo.dto.request.QuadroRequest;
 import com.ada.dynamo.dto.response.QuadroResponse;
 import com.ada.dynamo.model.Quadro;
-import org.mapstruct.Mapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+@Component
+public class QuadroMapper extends TodoMapper<QuadroResponse, Quadro> {
+    public QuadroMapper(ObjectMapper objectMapper) {
+        super(objectMapper);
+    }
 
-@Mapper(componentModel = "spring")
-public interface QuadroMapper {
-
-    Quadro requestToModel(QuadroRequest quadroRequest);
-
-    QuadroResponse modelToResponse(Quadro quadro);
-
-    List<QuadroResponse> modelListToResponseList(List<Quadro> quadroList);
+    @Override
+    Class<Quadro> getModelClass() {
+        return Quadro.class;
+    }
+    @Override
+    Class<QuadroResponse> getResponseClass() {
+        return QuadroResponse.class;
+    }
 }

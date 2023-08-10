@@ -4,11 +4,11 @@ import com.ada.dynamo.dto.request.AlterarColunaTarefaRequest;
 import com.ada.dynamo.dto.request.TarefaRequest;
 import com.ada.dynamo.dto.response.TarefaResponse;
 import com.ada.dynamo.service.TarefaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
