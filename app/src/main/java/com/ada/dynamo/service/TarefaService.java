@@ -2,9 +2,7 @@ package com.ada.dynamo.service;
 
 import com.ada.dynamo.dto.request.AlterarColunaTarefaRequest;
 import com.ada.dynamo.dto.request.TarefaRequest;
-import com.ada.dynamo.dto.response.ColunaResponse;
 import com.ada.dynamo.dto.response.TarefaResponse;
-import com.ada.dynamo.repository.ColunaRepository;
 import com.ada.dynamo.util.mapper.TarefaMapper;
 import com.ada.dynamo.model.Tarefa;
 import com.ada.dynamo.repository.TarefaRepository;

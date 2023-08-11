@@ -3,7 +3,6 @@ package com.ada.dynamo.model;
 import com.ada.dynamo.util.converter.LocalDateTimeToStringConverter;
 import com.ada.dynamo.util.converter.PrioridadeToStringConverter;
 import lombok.Setter;
-import software.amazon.awssdk.enhanced.dynamodb.EnumAttributeConverter;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbConvertedBy;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
