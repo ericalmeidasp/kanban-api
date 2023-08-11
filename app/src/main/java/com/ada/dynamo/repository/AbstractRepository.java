@@ -1,8 +1,6 @@
 package com.ada.dynamo.repository;
 
 import com.ada.dynamo.exception.ItemNaoEncontradoException;
-import com.ada.dynamo.model.Coluna;
-import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.*;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
