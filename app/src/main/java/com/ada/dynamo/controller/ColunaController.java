@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class ColunaController {
-
     private final ColunaService service;
 
     @PostMapping

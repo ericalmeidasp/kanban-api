@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class TarefaController {
-
     private final TarefaService service;
 
     @PostMapping

@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class QuadroController {
-
     private final QuadroService service;
 
     @PostMapping
