@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/todo/tarefa")
+@RequestMapping("/api/kanban/tarefa")
 @RequiredArgsConstructor
 @CrossOrigin
 public class TarefaController {
-
     private final TarefaService service;
 
     @PostMapping

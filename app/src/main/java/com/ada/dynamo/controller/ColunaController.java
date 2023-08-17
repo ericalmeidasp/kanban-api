@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/todo/coluna")
+@RequestMapping("/api/kanban/coluna")
 @RequiredArgsConstructor
 @CrossOrigin
 public class ColunaController {
-
     private final ColunaService service;
 
     @PostMapping

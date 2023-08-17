@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/todo/quadro")
+@RequestMapping("/api/kanban/quadro")
 @RequiredArgsConstructor
 @CrossOrigin
 public class QuadroController {
-
     private final QuadroService service;
 
     @PostMapping
