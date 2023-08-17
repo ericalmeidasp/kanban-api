@@ -10,7 +10,6 @@ public class ColunaMapper extends TodoMapper<ColunaResponse,Coluna>{
     public ColunaMapper(ObjectMapper objectMapper) {
         super(objectMapper);
     }
-
     @Override
     Class<Coluna> getModelClass() {
         return Coluna.class;

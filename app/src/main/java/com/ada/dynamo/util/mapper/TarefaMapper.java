@@ -10,7 +10,6 @@ public class TarefaMapper extends TodoMapper<TarefaResponse,Tarefa> {
     public TarefaMapper(ObjectMapper objectMapper) {
         super(objectMapper);
     }
-
     @Override
     Class<Tarefa> getModelClass() {
         return Tarefa.class;

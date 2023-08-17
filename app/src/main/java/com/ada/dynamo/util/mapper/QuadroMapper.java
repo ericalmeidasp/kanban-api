@@ -10,7 +10,6 @@ public class QuadroMapper extends TodoMapper<QuadroResponse, Quadro> {
     public QuadroMapper(ObjectMapper objectMapper) {
         super(objectMapper);
     }
-
     @Override
     Class<Quadro> getModelClass() {
         return Quadro.class;
