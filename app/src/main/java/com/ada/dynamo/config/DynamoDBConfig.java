@@ -6,6 +6,7 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 
 @Configuration
 public class DynamoDBConfig {
+    
     @Bean
     DynamoDbEnhancedClient enhancedClient() {
         return DynamoDbEnhancedClient.create();
