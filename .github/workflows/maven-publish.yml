@@ -28,6 +28,12 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file ./app/pom.xml
+        
+      - uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: Package
+          path: app/target/*.jar
 
   build-docker:
     name: Build Docker Image
